@@ -18,7 +18,7 @@ interface ProductDetailProps {
     };
 }
 
-export const revalidate = 3660;
+export const revalidate = 60;
 
 const URL = "https://www.medistyle.cz";
 
