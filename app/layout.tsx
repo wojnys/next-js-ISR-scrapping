@@ -3,8 +3,8 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
-    title: "v0 App",
-    description: "Created with v0",
+    title: "Scraping webpage",
+    description: "Created with v0 and next js",
     generator: "v0.dev",
 };
 
