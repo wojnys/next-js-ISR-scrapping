@@ -16,35 +16,8 @@ export default async function Home() {
 
     return (
         <div className="flex min-h-screen flex-col">
-            <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                <div className="container flex h-16 items-center justify-between">
-                    <Link href="/" className="flex items-center space-x-2">
-                        <span className="font-bold text-xl">WebProducts</span>
-                    </Link>
-                    <nav className="hidden md:flex gap-6">
-                        <Link href="#features" className="text-sm font-medium transition-colors hover:text-primary">
-                            Features
-                        </Link>
-                        <Link href="#products" className="text-sm font-medium transition-colors hover:text-primary">
-                            Products
-                        </Link>
-                        <Link href="#pricing" className="text-sm font-medium transition-colors hover:text-primary">
-                            Pricing
-                        </Link>
-                        <Link href="#contact" className="text-sm font-medium transition-colors hover:text-primary">
-                            Contact
-                        </Link>
-                    </nav>
-                    <div className="flex items-center gap-4">
-                        <Button variant="outline" size="sm" className="hidden md:flex">
-                            Log in
-                        </Button>
-                        <Button size="sm">Get Started</Button>
-                    </div>
-                </div>
-            </header>
             <main className="flex-1">
-                <section id="products" className="w-full py-12 md:py-24 lg:py-32">
+                <section id="products" className="w-full py-12">
                     <div className="container px-4 md:px-6">
                         <div className="flex flex-col items-center justify-center space-y-4 text-center">
                             <div className="space-y-2">

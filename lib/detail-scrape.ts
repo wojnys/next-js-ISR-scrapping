@@ -1,52 +1,32 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
+import { Product } from "./scrape";
 
-export interface Product {
-    id: string;
-    imageUrl: string;
-    name: string;
-    description: string;
-    price: string;
-}
-
-export async function scrapeWebsiteDetail(url: string) {
+export async function scrapeWebsiteDetail(url: string): Promise<Product> {
     try {
-        // Fetch the HTML content of the webpage
+        // Fetch the HTML
         const { data: html } = await axios.get(url);
 
         // Load the HTML into Cheerio
         const $ = cheerio.load(html);
 
-        // Product name
         const name = $("h1").first().text().trim();
 
-        // Image URL
-        const image = $(".p-image img").attr("src");
+        const imageUrl = $(".p-image img").attr("src") ?? "#";
 
-        // Description
         const description = $(".p-short-description").text().trim();
 
-        // Price
-        const price = $(".price-final .price-final-holder").text().trim();
+        const price = $(".price-final .price-final-holder").last().text().trim();
 
-        // Availability (first visible span with class "availability-label")
-        const availability = $(".availability-label.skladem").first().text().trim();
-
-        console.log("Product Details:", {
+        const product: Product = {
+            id: url.split("/").pop() || "",
+            imageUrl,
             name,
-            image,
             description,
             price,
-            availability,
-        });
-
-        return {
-            name,
-            image,
-            description,
-            price,
-            availability,
         };
+
+        return product;
     } catch (error) {
         console.error("Error scraping the website:", error);
         throw error;

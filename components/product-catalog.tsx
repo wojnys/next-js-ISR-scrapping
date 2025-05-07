@@ -1,6 +1,4 @@
-import { ShoppingCart } from "lucide-react";
-
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import React from "react";
 import Link from "next/link";
@@ -15,26 +13,21 @@ interface ProductCatalogProps {
 
 const ProductCatalog: React.FC<ProductCatalogProps> = ({ productId, name, description, price, image }) => {
     return (
-        <div className="w-full">
-            <Card className="overflow-hidden">
+        <Link href={`/products/${productId}`} className="w-full block group">
+            <Card className="overflow-hidden group-hover:cursor-pointer">
                 <div className="relative">
                     <img src={image || "/placeholder.svg"} alt={name} className="w-full h-48 object-cover" />
-                    <Badge className="absolute top-2 right-2">Produkt</Badge>
+                    <Badge className="absolute top-2 right-2">Product</Badge>
                 </div>
                 <CardHeader>
-                    <CardTitle className="h-16">{name}</CardTitle>
+                    <CardTitle className="h-16 group-hover:underline">{name}</CardTitle>
                     <CardDescription className="h-16">{description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="text-2xl font-bold">{price}</div>
                 </CardContent>
-                <CardFooter className="flex justify-between">
-                    <Link href={`/products/${productId}`} className="text-sm text-muted-foreground bg-slate-800 px-4 py-2 rounded-full text-white">
-                        View Details
-                    </Link>
-                </CardFooter>
             </Card>
-        </div>
+        </Link>
     );
 };
 

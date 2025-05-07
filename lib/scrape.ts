@@ -9,11 +9,11 @@ export interface Product {
     price: string;
 }
 
-export async function scrapeWebsite(url: string) {
+export async function scrapeWebsite(url: string): Promise<Product[]> {
     const products: Product[] = [];
 
     try {
-        // Fetch the HTML content of the webpage
+        // Fetch the HTML
         const { data: html } = await axios.get(url);
 
         // Load the HTML into Cheerio
@@ -22,7 +22,6 @@ export async function scrapeWebsite(url: string) {
         $(".product").each((index, element) => {
             const product = $(element);
 
-            // I need to remo "/ "  slashes from id
             const id = product.find(".p-tools a").attr("href")?.replaceAll("/", "").trim() ?? "";
             const imageUrl =
                 product.find("a.image img").attr("data-src") ??
